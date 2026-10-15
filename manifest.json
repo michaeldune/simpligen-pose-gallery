@@ -1,0 +1,189 @@
+{
+ "title": "Pose Studio Doll Gallery",
+ "lora": "VNCCS Pose Studio for Qwen Image 2.1 (V2)",
+ "mockup": true,
+ "sections": {
+  "square": {
+   "title": "Square 1:1",
+   "aspect": "1 / 1",
+   "size": "1024 x 1024",
+   "poses": [
+    {
+     "name": "Boxing Stance",
+     "family": "Fighting",
+     "doll": "assets/square/dolls/boxing.png",
+     "doll_thumb": "assets/square/thumbs/boxing_doll.jpg",
+     "download_name": "boxing_stance_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person1.jpg",
+       "result": "assets/square/results/boxing_person1.jpg",
+       "thumb": "assets/square/thumbs/boxing_person1.jpg"
+      },
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/square/photos/person2.jpg",
+       "result": "assets/square/results/boxing_person2.jpg",
+       "thumb": "assets/square/thumbs/boxing_person2.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Kneeling - Side View",
+     "family": "Kneeling",
+     "doll": "assets/square/dolls/kneeling.png",
+     "doll_thumb": "assets/square/thumbs/kneeling_doll.jpg",
+     "download_name": "kneeling_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person1.jpg",
+       "result": "assets/square/results/kneeling_person1.jpg",
+       "thumb": "assets/square/thumbs/kneeling_person1.jpg"
+      },
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/square/photos/person2.jpg",
+       "result": "assets/square/results/kneeling_person2.jpg",
+       "thumb": "assets/square/thumbs/kneeling_person2.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Crawling",
+     "family": "Crawling",
+     "doll": "assets/square/dolls/crawling.png",
+     "doll_thumb": "assets/square/thumbs/crawling_doll.jpg",
+     "download_name": "crawling_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person1.jpg",
+       "result": "assets/square/results/crawling_person1.jpg",
+       "thumb": "assets/square/thumbs/crawling_person1.jpg"
+      },
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/square/photos/person2.jpg",
+       "result": "assets/square/results/crawling_person2.jpg",
+       "thumb": "assets/square/thumbs/crawling_person2.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Seated on Floor",
+     "family": "Sitting",
+     "doll": "assets/square/dolls/seated.png",
+     "doll_thumb": "assets/square/thumbs/seated_doll.jpg",
+     "download_name": "seated_on_floor_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person1.jpg",
+       "result": "assets/square/results/seated_person1.jpg",
+       "thumb": "assets/square/thumbs/seated_person1.jpg"
+      },
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/square/photos/person2.jpg",
+       "result": "assets/square/results/seated_person2.jpg",
+       "thumb": "assets/square/thumbs/seated_person2.jpg"
+      }
+     ]
+    }
+   ]
+  },
+  "portrait": {
+   "title": "Portrait 3:4",
+   "aspect": "3 / 4",
+   "size": "864 x 1152",
+   "poses": [
+    {
+     "name": "Boxing Stance",
+     "family": "Fighting",
+     "doll": "assets/portrait/dolls/boxing.png",
+     "doll_thumb": "assets/portrait/thumbs/boxing_doll.jpg",
+     "download_name": "boxing_stance_portrait.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/portrait/photos/person1.jpg",
+       "result": "assets/portrait/results/boxing_person1.jpg",
+       "thumb": "assets/portrait/thumbs/boxing_person1.jpg"
+      },
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person2.jpg",
+       "result": "assets/portrait/results/boxing_person2.jpg",
+       "thumb": "assets/portrait/thumbs/boxing_person2.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Kneeling - Side View",
+     "family": "Kneeling",
+     "doll": "assets/portrait/dolls/kneeling.png",
+     "doll_thumb": "assets/portrait/thumbs/kneeling_doll.jpg",
+     "download_name": "kneeling_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/portrait/photos/person1.jpg",
+       "result": "assets/portrait/results/kneeling_person1.jpg",
+       "thumb": "assets/portrait/thumbs/kneeling_person1.jpg"
+      },
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person2.jpg",
+       "result": "assets/portrait/results/kneeling_person2.jpg",
+       "thumb": "assets/portrait/thumbs/kneeling_person2.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Crawling",
+     "family": "Crawling",
+     "doll": "assets/portrait/dolls/crawling.png",
+     "doll_thumb": "assets/portrait/thumbs/crawling_doll.jpg",
+     "download_name": "crawling_portrait.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/portrait/photos/person1.jpg",
+       "result": "assets/portrait/results/crawling_person1.jpg",
+       "thumb": "assets/portrait/thumbs/crawling_person1.jpg"
+      },
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person2.jpg",
+       "result": "assets/portrait/results/crawling_person2.jpg",
+       "thumb": "assets/portrait/thumbs/crawling_person2.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Seated on Floor",
+     "family": "Sitting",
+     "doll": "assets/portrait/dolls/seated.png",
+     "doll_thumb": "assets/portrait/thumbs/seated_doll.jpg",
+     "download_name": "seated_on_floor_portrait.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/portrait/photos/person1.jpg",
+       "result": "assets/portrait/results/seated_person1.jpg",
+       "thumb": "assets/portrait/thumbs/seated_person1.jpg"
+      },
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person2.jpg",
+       "result": "assets/portrait/results/seated_person2.jpg",
+       "thumb": "assets/portrait/thumbs/seated_person2.jpg"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<!--
+  Pose Studio Doll Gallery.
+  Front end adapted from lumenastrum/clio-style-preview gallery/index.html (MIT, Copyright (c) 2026 lumenastrum):
+  manifest-driven sections, search, family filter, lightbox and split-slider compare. See LICENSE-clio-style-preview.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pose Studio Doll Gallery</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🧍</text></svg>">
+<style>
+  :root {
+    --bg: #0f1418;
+    --panel: #172027;
+    --panel-2: #1f2a33;
+    --accent: #3ec7b3;
+    --accent-soft: #8ae3d6;
+    --accent-dim: rgba(62, 199, 179, .14);
+    --warm: #f0b45c;
+    --warm-soft: #f7d39a;
+    --text: #e9f0f2;
+    --muted: #9db0b8;
+    --line: rgba(255, 255, 255, .08);
+    --doll-bg: #f4f6f7;
+    --shadow: 0 8px 32px rgba(62, 199, 179, .18);
+    --radius: 14px;
+    --font: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scrollbar-color: var(--accent) var(--bg); }
+  body {
+    font-family: var(--font);
+    background:
+      radial-gradient(900px 500px at 10% -5%, rgba(62, 199, 179, .10), transparent 60%),
+      radial-gradient(800px 500px at 95% 105%, rgba(240, 180, 92, .08), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  a { color: var(--accent-soft); }
+  ::selection { background: var(--accent); color: #06201c; }
+
+  /* ---------- header ---------- */
+  header { padding: 34px clamp(16px, 4vw, 48px) 10px; max-width: 1500px; margin: 0 auto; }
+  .eyebrow { font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--warm); margin-bottom: 8px; }
+  h1 {
+    font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -.02em;
+    background: linear-gradient(100deg, var(--accent-soft) 10%, var(--accent) 45%, var(--warm-soft) 95%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block;
+  }
+  .subtitle { color: var(--muted); margin-top: 6px; font-size: 14.5px; max-width: 820px; line-height: 1.5; }
+  .mock-badge {
+    display: inline-block; margin-left: 10px; padding: 2px 10px; border-radius: 999px; font-size: 12px;
+    color: var(--warm-soft); border: 1px solid rgba(240, 180, 92, .4); background: rgba(240, 180, 92, .08); vertical-align: middle;
+  }
+  .howto {
+    margin-top: 18px; display: grid; gap: 12px; max-width: 1100px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+  .step {
+    border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255, 255, 255, .02);
+    padding: 14px 16px; font-size: 13.5px; line-height: 1.5; color: var(--text);
+  }
+  .step b { color: var(--accent-soft); display: block; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 4px; }
+  .step .note { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+
+  /* ---------- controls ---------- */
+  .controls {
+    position: sticky; top: 0; z-index: 40; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+    padding: 12px clamp(16px, 4vw, 48px); max-width: 1500px; margin: 8px auto 0;
+    background: linear-gradient(to bottom, rgba(15, 20, 24, .96) 70%, rgba(15, 20, 24, 0)); backdrop-filter: blur(8px);
+  }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tab {
+    font-family: var(--font); font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--panel); color: var(--muted); cursor: pointer; transition: all .18s ease;
+  }
+  .tab:hover { color: var(--accent-soft); border-color: rgba(62, 199, 179, .4); }
+  .tab.active { background: linear-gradient(120deg, var(--accent), #2a9f8e); border-color: transparent; color: #06201c; box-shadow: var(--shadow); }
+  .tab .count-pill { margin-left: 7px; font-size: 11px; padding: 1px 7px; border-radius: 999px; background: rgba(0, 0, 0, .2); }
+  .tab:not(.active) .count-pill { background: rgba(255, 255, 255, .06); color: var(--warm-soft); }
+  .family-filter {
+    font-family: var(--font); font-size: 12.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--panel); color: var(--muted); cursor: pointer;
+  }
+  .family-filter.filtering { color: #06201c; background: var(--accent); border-color: var(--accent); }
+  .search-wrap { margin-left: auto; position: relative; }
+  .search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; stroke: var(--muted); pointer-events: none; }
+  #search {
+    font-family: var(--font); width: min(260px, 62vw); padding: 9px 14px 9px 36px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--panel); color: var(--text); font-size: 14px; outline: none;
+  }
+  #search::placeholder { color: var(--muted); }
+  #search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+  .result-count { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+
+  /* ---------- grid ---------- */
+  main { max-width: 1500px; margin: 0 auto; padding: 10px clamp(16px, 4vw, 48px) 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .tile {
+    position: relative; border-radius: var(--radius); overflow: hidden; background: var(--doll-bg);
+    border: 1px solid var(--line); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .tile:hover, .tile:focus-visible { transform: translateY(-4px); border-color: rgba(62, 199, 179, .6); box-shadow: var(--shadow); outline: none; }
+  .tile .frame { position: relative; width: 100%; }
+  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .25s ease; }
+  .tile img.result { object-fit: cover; opacity: 0; }
+  .tile:hover img.result, .tile:focus-visible img.result { opacity: 1; }
+  .tile .caption { padding: 8px 10px 9px; font-size: 12.5px; font-weight: 600; color: var(--text); background: var(--panel); border-top: 1px solid var(--line); }
+  .tile .caption small { display: block; font-weight: 500; color: var(--accent-soft); font-size: 11px; letter-spacing: .08em; }
+  .tile .hint {
+    position: absolute; top: 8px; left: 8px; padding: 2px 8px; border-radius: 999px; font-size: 10.5px; font-weight: 600;
+    background: rgba(6, 12, 15, .65); color: var(--accent-soft); opacity: 0; transition: opacity .2s ease;
+  }
+  .tile:hover .hint { opacity: 1; }
+  .dl-btn {
+    position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line);
+    background: rgba(6, 12, 15, .7); backdrop-filter: blur(4px); display: grid; place-items: center; cursor: pointer;
+    transition: transform .15s ease, background .15s ease; text-decoration: none;
+  }
+  .dl-btn:hover { transform: scale(1.12); background: var(--accent); }
+  .dl-btn svg { width: 15px; height: 15px; fill: none; stroke: var(--accent-soft); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .dl-btn:hover svg { stroke: #06201c; }
+  .empty-state { text-align: center; padding: 70px 20px; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); }
+  .empty-state .big { font-size: 20px; color: var(--accent-soft); margin-bottom: 8px; font-weight: 700; }
+
+  /* ---------- lightbox ---------- */
+  .overlay {
+    position: fixed; inset: 0; z-index: 100; background: rgba(6, 10, 12, .84); backdrop-filter: blur(10px);
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .overlay.open { display: flex; animation: fadeIn .18s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: rgba(23, 32, 39, .9);
+    color: var(--text); font-size: 20px; cursor: pointer; display: grid; place-items: center; transition: all .15s ease; user-select: none;
+  }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent-soft); transform: scale(1.06); }
+  .lb-close { position: fixed; top: 18px; right: 20px; z-index: 101; }
+  .lb-stage { display: flex; align-items: center; gap: 16px; max-width: 1280px; width: 100%; height: 100%; }
+  .lb-card {
+    flex: 1; min-width: 0; max-height: 100%; display: flex; gap: 0; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 18px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
+  }
+  .lb-visual { flex: 1; min-width: 0; display: grid; place-items: center; background: #0b1013; padding: 14px; }
+  .split-stage {
+    position: relative; height: min(78vh, 860px); max-width: 100%; border-radius: 12px; overflow: hidden;
+    background: var(--doll-bg); cursor: ew-resize; touch-action: none; user-select: none;
+  }
+  .split-layer { position: absolute; inset: 0; overflow: hidden; }
+  .split-layer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+  .split-layer.top { will-change: clip-path; background: var(--doll-bg); }
+  .split-tag {
+    position: absolute; bottom: 12px; padding: 5px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 700;
+    background: rgba(6, 12, 15, .78); border: 1px solid var(--line); pointer-events: none; z-index: 3;
+  }
+  .split-tag.left { left: 12px; color: var(--accent-soft); }
+  .split-tag.right { right: 12px; color: var(--warm-soft); }
+  .split-divider {
+    position: absolute; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--accent), var(--warm));
+    transform: translateX(-50%); z-index: 4; pointer-events: none; box-shadow: 0 0 16px rgba(62, 199, 179, .5);
+  }
+  .split-handle {
+    position: absolute; top: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(6, 12, 15, .85); border: 2px solid var(--warm); display: grid; place-items: center;
+    color: var(--warm-soft); font-size: 14px; letter-spacing: 2px; z-index: 5; pointer-events: none;
+  }
+  .lb-side { width: 300px; flex-shrink: 0; padding: 20px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+  .lb-name { font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
+  .lb-sub { font-size: 12.5px; color: var(--muted); margin-top: -8px; }
+  .lb-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .examples { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ex-btn {
+    font-family: var(--font); font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--panel-2); color: var(--muted); cursor: pointer;
+  }
+  .ex-btn.active { background: var(--warm); color: #2a1a05; border-color: var(--warm); }
+  .photo-row { display: flex; gap: 10px; align-items: center; font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+  .photo-row img { width: 72px; border-radius: 8px; border: 1px solid var(--line); }
+  .btn {
+    font-family: var(--font); font-size: 13.5px; font-weight: 700; padding: 11px 16px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--panel-2); color: var(--text); display: inline-flex; align-items: center;
+    justify-content: center; gap: 8px; text-decoration: none; transition: all .15s ease;
+  }
+  .btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn:hover { border-color: var(--accent); color: var(--accent-soft); }
+  .btn.primary { background: linear-gradient(120deg, var(--accent), #2a9f8e); border-color: transparent; color: #06201c; }
+  .btn.primary:hover { filter: brightness(1.1); color: #06201c; }
+  .lb-tip { font-size: 12px; color: var(--muted); line-height: 1.5; border-top: 1px solid var(--line); padding-top: 12px; }
+
+  footer { max-width: 1100px; margin: 48px auto 0; padding: 0 clamp(16px, 4vw, 48px) 40px; color: var(--muted); font-size: 12.5px; line-height: 1.7; }
+  footer h3 { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--warm); margin-bottom: 6px; }
+
+  @media (max-width: 860px) {
+    .lb-card { flex-direction: column; overflow-y: auto; }
+    .lb-side { width: 100%; }
+    .split-stage { height: min(60vh, 600px); }
+    .lb-nav { display: none; }
+  }
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+    .search-wrap { margin-left: 0; width: 100%; }
+    #search { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">SimpliGen ✦ Pose Studio</div>
+  <h1>Pose Studio Doll Gallery</h1><span class="mock-badge" id="mockBadge" hidden>mock-up</span>
+  <p class="subtitle">
+    Pick a pose, download the doll, and give it to the SimpliGen pose card together with a photo of your person.
+    The card puts the person into the doll's pose and keeps their face, clothes and background.
+    Hover a doll to see an example; click it to compare doll and result with the slider.
+  </p>
+  <div class="howto">
+    <div class="step"><b>1 · Your photo</b>A full-body photo of one person, with the floor visible down to the bottom edge.
+      <div class="note">Square or 3:4 portrait, the same shape as the doll you pick.</div></div>
+    <div class="step"><b>2 · A doll</b>Download a doll in the same shape as your photo (Square or Portrait tab).
+      <div class="note">The person lands where the doll stands, at the doll's size.</div></div>
+    <div class="step"><b>3 · Generate</b>In SimpliGen, open the pose card: Picture 1 = the doll, Picture 2 = your photo.
+      <div class="note">No prompt needed.</div></div>
+  </div>
+</header>
+
+<div class="controls" id="controls" hidden>
+  <nav class="tabs" id="tabs" aria-label="Shapes"></nav>
+  <select id="familyFilter" class="family-filter" aria-label="Filter by pose family" hidden>
+    <option value="">all poses</option>
+  </select>
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="search" type="search" placeholder="find a pose…" aria-label="Filter poses by name" autocomplete="off">
+  </div>
+  <div class="result-count" id="resultCount"></div>
+</div>
+
+<main id="main"><div class="empty-state"><div class="big">loading the dolls…</div></div></main>
+
+<div class="overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Pose detail">
+  <button class="icon-btn lb-close" id="lbClose" aria-label="Close">×</button>
+  <div class="lb-stage">
+    <button class="icon-btn lb-nav" id="lbPrev" aria-label="Previous pose">‹</button>
+    <div class="lb-card">
+      <div class="lb-visual">
+        <div class="split-stage" id="splitStage" aria-label="Drag to compare the doll and the result">
+          <div class="split-layer bottom"><img id="imgResult" alt=""></div>
+          <div class="split-layer top" id="splitTop"><img id="imgDoll" alt=""></div>
+          <div class="split-tag left">doll</div>
+          <div class="split-tag right">result</div>
+          <div class="split-divider" id="splitDivider"><div class="split-handle" id="splitHandle">‹ ›</div></div>
+        </div>
+      </div>
+      <div class="lb-side">
+        <div class="lb-name" id="lbName"></div>
+        <div class="lb-sub" id="lbSub"></div>
+        <a class="btn primary" id="lbDownload" download>
+          <svg viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+          Download doll (PNG)
+        </a>
+        <div class="lb-label">Example</div>
+        <div class="examples" id="lbExamples"></div>
+        <div class="photo-row"><img id="lbPhoto" alt="Picture 2 used for this example"><span>Picture 2 for this example. The result keeps this person, outfit and background.</span></div>
+        <div class="lb-tip">Drag the slider (or use ← → while it has focus) to compare. Arrow keys outside the slider step through poses.</div>
+      </div>
+    </div>
+    <button class="icon-btn lb-nav" id="lbNext" aria-label="Next pose">›</button>
+  </div>
+</div>
+
+<footer>
+  <h3>Credits</h3>
+  Pose Studio and its Qwen Image 2.1 pose LoRA by <a href="https://github.com/AHEKOT/ComfyUI_VNCCS_Utils">MiuProject (VNCCS)</a>, MIT, used with the author's permission; the doll is built on MakeHuman.
+  Poses from <a href="https://huggingface.co/Totemistyk/General_Poses_PoseStudio">Totemistyk's General Poses</a> library, used with permission.
+  Gallery front end adapted from <a href="https://github.com/lumenastrum/clio-style-preview">lumenastrum/clio-style-preview</a> (MIT).
+  Dolls rendered and framed for SimpliGen: every doll at the same scale, standing on the bottom tenth of the frame.
+</footer>
+
+<noscript><p style="text-align:center;padding:40px;color:#9db0b8">This gallery needs JavaScript.</p></noscript>
+
+<script>
+(function () {
+  "use strict";
+  var manifest = null, sectionKeys = [], activeSection = null, query = "", activeFamily = "";
+  var filtered = [], lbIndex = -1, exIndex = 0, splitPos = 0.5;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var els = {
+    main: $("main"), tabs: $("tabs"), search: $("search"), resultCount: $("resultCount"), controls: $("controls"),
+    familyFilter: $("familyFilter"), lightbox: $("lightbox"), splitStage: $("splitStage"), splitTop: $("splitTop"),
+    imgDoll: $("imgDoll"), imgResult: $("imgResult"), splitDivider: $("splitDivider"), splitHandle: $("splitHandle"),
+    lbName: $("lbName"), lbSub: $("lbSub"), lbDownload: $("lbDownload"), lbExamples: $("lbExamples"), lbPhoto: $("lbPhoto"),
+  };
+  function uri(p) { return encodeURI(p); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function showEmpty(big, small) { els.main.innerHTML = '<div class="empty-state"><div class="big">' + big + "</div>" + (small ? "<div>" + small + "</div>" : "") + "</div>"; }
+
+  fetch("manifest.json", { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(function (data) {
+      manifest = data || {}; manifest.sections = manifest.sections || {};
+      sectionKeys = Object.keys(manifest.sections);
+      if (manifest.mockup) $("mockBadge").hidden = false;
+      if (!sectionKeys.length) { showEmpty("no dolls yet"); return; }
+      activeSection = sectionKeys[0];
+      els.controls.hidden = false;
+      buildTabs(); buildFamilies(); applyFilter();
+    })
+    .catch(function (err) {
+      showEmpty("manifest.json not found", "Serve this folder over HTTP (for example <code>python -m http.server</code>); file:// cannot load it. (" + esc(err.message) + ")");
+    });
+
+  function poses() { var s = manifest.sections[activeSection] || {}; return Array.isArray(s.poses) ? s.poses : []; }
+
+  function buildTabs() {
+    els.tabs.innerHTML = "";
+    sectionKeys.forEach(function (key) {
+      var sec = manifest.sections[key] || {};
+      var b = document.createElement("button");
+      b.className = "tab" + (key === activeSection ? " active" : "");
+      b.innerHTML = esc(sec.title || key) + '<span class="count-pill">' + (sec.poses || []).length + "</span>";
+      b.addEventListener("click", function () { if (activeSection !== key) { activeSection = key; buildTabs(); applyFilter(); } });
+      els.tabs.appendChild(b);
+    });
+  }
+
+  function buildFamilies() {
+    var fams = [];
+    sectionKeys.forEach(function (k) { (manifest.sections[k].poses || []).forEach(function (p) { if (p.family && fams.indexOf(p.family) === -1) fams.push(p.family); }); });
+    if (!fams.length) return;
+    fams.sort().forEach(function (f) { var o = document.createElement("option"); o.value = f; o.textContent = f.toLowerCase(); els.familyFilter.appendChild(o); });
+    els.familyFilter.hidden = false;
+  }
+  els.familyFilter.addEventListener("change", function () {
+    activeFamily = els.familyFilter.value;
+    els.familyFilter.classList.toggle("filtering", !!activeFamily);
+    applyFilter();
+  });
+  var searchTimer = null;
+  els.search.addEventListener("input", function () { clearTimeout(searchTimer); searchTimer = setTimeout(function () { query = els.search.value; applyFilter(); }, 80); });
+
+  function applyFilter() {
+    var all = poses(), q = query.trim().toLowerCase();
+    filtered = all.filter(function (p) {
+      if (activeFamily && p.family !== activeFamily) return false;
+      return (p.name + " " + (p.family || "")).toLowerCase().indexOf(q) !== -1;
+    });
+    renderGrid();
+    els.resultCount.textContent = (q || activeFamily) ? filtered.length + " of " + all.length + " poses" : all.length + " poses";
+  }
+
+  function aspectPad() {
+    var a = ((manifest.sections[activeSection] || {}).aspect || "1 / 1").split("/");
+    return (parseFloat(a[1]) / parseFloat(a[0]) * 100) + "%";
+  }
+
+  function renderGrid() {
+    els.main.innerHTML = "";
+    if (!filtered.length) { showEmpty("no pose matches “" + esc(query) + "”", "Try a shorter word, or clear the family filter."); return; }
+    var grid = document.createElement("div"); grid.className = "grid";
+    var pad = aspectPad();
+    filtered.forEach(function (p, idx) {
+      var tile = document.createElement("div");
+      tile.className = "tile"; tile.tabIndex = 0; tile.setAttribute("role", "button"); tile.setAttribute("aria-label", p.name);
+      var ex = (p.examples || [])[0];
+      tile.innerHTML =
+        '<div class="frame" style="padding-top:' + pad + '">' +
+        '<img class="doll" loading="lazy" decoding="async" alt="' + esc(p.name) + ' doll" src="' + uri(p.doll_thumb || p.doll) + '">' +
+        (ex ? '<img class="result" loading="lazy" decoding="async" alt="' + esc(p.name) + ' example" src="' + uri(ex.thumb || ex.result) + '">' : "") +
+        "</div>" +
+        (ex ? '<span class="hint">example</span>' : "") +
+        '<div class="caption">' + esc(p.name) + "<small>" + esc(p.family || "") + "</small></div>";
+      var dl = document.createElement("a");
+      dl.className = "dl-btn"; dl.href = uri(p.doll); dl.setAttribute("download", p.download_name || "");
+      dl.title = "Download the doll (PNG)"; dl.setAttribute("aria-label", "Download the " + p.name + " doll");
+      dl.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>';
+      dl.addEventListener("click", function (e) { e.stopPropagation(); });
+      tile.appendChild(dl);
+      tile.addEventListener("click", function () { openLightbox(idx); });
+      tile.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(idx); } });
+      grid.appendChild(tile);
+    });
+    els.main.appendChild(grid);
+  }
+
+  // ---------- lightbox ----------
+  function openLightbox(idx) {
+    if (idx < 0 || idx >= filtered.length) return;
+    lbIndex = idx; exIndex = 0;
+    var p = filtered[idx], sec = manifest.sections[activeSection] || {};
+    els.splitStage.style.aspectRatio = sec.aspect || "1 / 1";
+    els.imgDoll.src = uri(p.doll); els.imgDoll.alt = p.name + " doll";
+    els.lbName.textContent = p.name;
+    els.lbSub.textContent = [p.family, sec.title, sec.size, (lbIndex + 1) + " / " + filtered.length].filter(Boolean).join("  ·  ");
+    els.lbDownload.href = uri(p.doll); els.lbDownload.setAttribute("download", p.download_name || "");
+    els.lbExamples.innerHTML = "";
+    (p.examples || []).forEach(function (ex, i) {
+      var b = document.createElement("button");
+      b.className = "ex-btn"; b.textContent = ex.label || ("Example " + (i + 1));
+      b.addEventListener("click", function () { showExample(i); });
+      els.lbExamples.appendChild(b);
+    });
+    showExample(0);
+    setSplitPos(0.5);
+    els.lightbox.classList.add("open");
+  }
+  function showExample(i) {
+    var p = filtered[lbIndex], ex = (p.examples || [])[i];
+    if (!ex) return;
+    exIndex = i;
+    els.imgResult.src = uri(ex.result); els.imgResult.alt = p.name + ", " + (ex.label || "example");
+    els.lbPhoto.src = uri(ex.photo || "");
+    Array.prototype.forEach.call(els.lbExamples.children, function (b, k) { b.classList.toggle("active", k === i); });
+  }
+  function step(d) { if (filtered.length) openLightbox((lbIndex + d + filtered.length) % filtered.length); }
+  $("lbPrev").addEventListener("click", function () { step(-1); });
+  $("lbNext").addEventListener("click", function () { step(1); });
+  $("lbClose").addEventListener("click", function () { els.lightbox.classList.remove("open"); });
+  els.lightbox.addEventListener("click", function (e) { if (e.target === els.lightbox || e.target.classList.contains("lb-stage")) els.lightbox.classList.remove("open"); });
+
+  // split slider (from clio-style-preview): the top layer (doll) is clipped to the left of the divider
+  document.addEventListener("dragstart", function (e) { if (e.target && e.target.tagName === "IMG") e.preventDefault(); });
+  function setSplitPos(frac) {
+    splitPos = Math.max(0.02, Math.min(0.98, frac));
+    var pct = splitPos * 100;
+    els.splitTop.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
+    els.splitDivider.style.left = pct + "%";
+    els.splitHandle.style.left = pct + "%";
+  }
+  var dragging = false;
+  function posFromEvent(e) { var r = els.splitStage.getBoundingClientRect(); return (e.clientX - r.left) / r.width; }
+  els.splitStage.tabIndex = 0;
+  els.splitStage.addEventListener("pointerdown", function (e) { dragging = true; els.splitStage.setPointerCapture(e.pointerId); setSplitPos(posFromEvent(e)); });
+  els.splitStage.addEventListener("pointermove", function (e) { if (dragging) setSplitPos(posFromEvent(e)); });
+  ["pointerup", "pointercancel"].forEach(function (ev) { els.splitStage.addEventListener(ev, function () { dragging = false; }); });
+
+  document.addEventListener("keydown", function (e) {
+    var open = els.lightbox.classList.contains("open");
+    if (e.key === "Escape" && open) { els.lightbox.classList.remove("open"); return; }
+    if (!open) {
+      if (e.key === "/" && document.activeElement !== els.search) { e.preventDefault(); els.search.focus(); }
+      return;
+    }
+    var onSlider = document.activeElement === els.splitStage;
+    if (e.key === "ArrowLeft") { e.preventDefault(); onSlider ? setSplitPos(splitPos - 0.04) : step(-1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); onSlider ? setSplitPos(splitPos + 0.04) : step(1); }
+  });
+})();
+</script>
+</body>
+</html>
