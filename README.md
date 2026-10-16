@@ -18,6 +18,8 @@ cannot stand on a floor line.
 | `manifest.json` | sections (shapes) -> poses -> doll PNG, thumbnails, example photo and result per person |
 | `assets/<shape>/dolls/*.png` | the dolls people download (lossless) |
 | `assets/<shape>/results`, `photos`, `thumbs` | example renders and the photos used for them (JPEG) |
+| `scripts/frame_dolls.py` | frames each pose in Pose Studio (vanilla ComfyUI web page): render, measure, correct offsets |
+| `scripts/run_examples.py` | one example per doll through the SimpliGen card's workflow on SimpliGen's engine |
 | `scripts/build_gallery.py` | copies dolls and results in and writes the manifest |
 
 ## Run it locally
