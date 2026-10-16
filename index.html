@@ -147,7 +147,8 @@
   }
   .lb-visual { flex: 1; min-width: 0; display: grid; place-items: center; background: #0b1013; padding: 14px; }
   .split-stage {
-    position: relative; height: min(78vh, 860px); max-width: 100%; border-radius: 12px; overflow: hidden;
+    /* width is set per pose from its aspect so the stage always has the picture's shape (no letterbox bands) */
+    position: relative; width: 100%; height: auto; border-radius: 12px; overflow: hidden;
     background: var(--doll-bg); cursor: ew-resize; touch-action: none; user-select: none;
   }
   .split-layer { position: absolute; inset: 0; overflow: hidden; }
@@ -197,7 +198,6 @@
   @media (max-width: 860px) {
     .lb-card { flex-direction: column; overflow-y: auto; }
     .lb-side { width: 100%; }
-    .split-stage { height: min(60vh, 600px); }
     .lb-nav { display: none; }
   }
   @media (max-width: 640px) {
@@ -392,7 +392,9 @@
     if (idx < 0 || idx >= filtered.length) return;
     lbIndex = idx; exIndex = 0;
     var p = filtered[idx], sec = manifest.sections[activeSection] || {};
+    var ar = (sec.aspect || "1 / 1").split("/"), ratio = parseFloat(ar[0]) / parseFloat(ar[1]);
     els.splitStage.style.aspectRatio = sec.aspect || "1 / 1";
+    els.splitStage.style.width = "min(100%, " + (78 * ratio).toFixed(2) + "vh, " + Math.round(860 * ratio) + "px)";
     els.imgDoll.src = uri(p.doll); els.imgDoll.alt = p.name + " doll";
     els.lbName.textContent = p.name;
     els.lbSub.textContent = [p.family, sec.title, sec.size, (lbIndex + 1) + " / " + filtered.length].filter(Boolean).join("  ·  ");
