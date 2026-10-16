@@ -1,7 +1,7 @@
 # Pose Studio Doll Gallery
 
 A static gallery of framed Pose Studio dolls for SimpliGen's pose card (Qwen Image 2.1 + the VNCCS Pose Studio LoRA).
-Pick a pose, download the doll PNG, and give the card the doll as picture 1 and a full-body photo as picture 2: the
+Pick a pose, download the doll PNG, and give the card a full-body photo as picture 1 and the doll as picture 2: the
 person is moved into the doll's pose and keeps their face, outfit and background. Each pose opens in a split-slider
 view comparing the doll with real results.
 
