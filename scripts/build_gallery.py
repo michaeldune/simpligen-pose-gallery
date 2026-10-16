@@ -1,36 +1,25 @@
-"""Build the gallery's assets/ and manifest.json from rendered dolls and example results.
+"""Build the gallery's assets/ and manifest.json from the framed dolls and their example results.
 
-Mock-up source: the 2026-10-14 pose-transfer tests in F:/Claude-Work/vnccs-pose-test-20261014 (four poses, two shapes,
-two example people per shape, VNCCS Pose Studio LoRA V2, seed 7).
-Dolls are copied as lossless PNG (the file people download and upload as picture 1); results and example photos are
-JPEG (q88 full size + 480 px thumbnails) because they are only for viewing.
+Source: F:/Claude-Work/pose-dolls-20261015 (made with frame_dolls.py and run_examples.py there):
+  state.json                       one entry per pose (Totemistyk's General Poses, @23468b2b), final square render
+  renders/framing/doll_pgp_<k>_00001_.png   the 864x1152 portrait doll of each pose
+  examples/square/<k>.png          the woman in that pose (Pose Studio card, seed 7)
+  examples/portrait/<k>.png        the man in that pose
+Dolls are copied as lossless PNG (the file people download and upload as picture 1); results and the example photos
+are JPEG (q88 full size + 480 px thumbnails) because they are only for viewing. Poses without an example yet are
+skipped, so the build can run before every render is done.
 usage: uv run --no-project --with pillow python scripts/build_gallery.py
 """
 import json, os, shutil
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = "F:/Claude-Work/vnccs-pose-test-20261014"
-ASSETS = os.path.join(ROOT, "assets")
-
-# pose key -> display name, family (Totemistyk's folder names), source names in the test folder
-POSES = [
-    ("boxing", "Boxing Stance", "Fighting"),
-    ("kneeling", "Kneeling - Side View", "Kneeling"),
-    ("crawling", "Crawling", "Crawling"),
-    ("seated", "Seated on Floor", "Sitting"),
-]
-SHAPES = {
-    "square": {"title": "Square 1:1", "aspect": "1 / 1", "size": "1024 x 1024",
-               "doll": "out/doll_framed_{p}_00001_.png",
-               "people": [("Woman, plaza", "chars/woman.png", "out/res/woman_framed_{p}_v2_s7_00001_.png"),
-                          ("Man, rooftop", "chars/man.png", "out/res/man_framed_{p}_v2_s7_00001_.png")]},
-    "portrait": {"title": "Portrait 3:4", "aspect": "3 / 4", "size": "864 x 1152",
-                 "doll": "out/doll_portrait_{p}_00001_.png",
-                 "people": [("Woman, plaza", "chars/woman34.png", "out/res/woman34_portrait_{p}_v2_s7_00001_.png"),
-                            ("Man, rooftop", "chars/man34.png", "out/res/man34_portrait_{p}_v2_s7_00001_.png")]},
-}
+SRC = "F:/Claude-Work/pose-dolls-20261015"
+PEOPLE = {"square": ("Woman, plaza", "F:/Claude-Work/vnccs-pose-test-20261014/chars/woman.png"),
+          "portrait": ("Man, rooftop", "F:/Claude-Work/vnccs-pose-test-20261014/chars/man34.png")}
+SHAPES = {"square": ("Square 1:1", "1 / 1", "1024 x 1024"), "portrait": ("Portrait 3:4", "3 / 4", "864 x 1152")}
 THUMB = 480
+ASSETS = os.path.join(ROOT, "assets")
 
 
 def jpeg(src, dst, max_side=None):
@@ -45,39 +34,48 @@ def rel(p):
     return os.path.relpath(p, ROOT).replace("\\", "/")
 
 
+def pretty(src_path):
+    # "Standing__Arms Behind Back - Side View.json" -> family "Standing", name "Arms Behind Back - Side View"
+    base = os.path.basename(src_path)[:-5]
+    family, name = base.split("__", 1)
+    family = family.capitalize() if family.islower() else family
+    if family == "Uncategorized":
+        family = "Crouching"
+    return family, name
+
+
+st = json.load(open(os.path.join(SRC, "state.json"), encoding="utf-8"))
 if os.path.isdir(ASSETS):
     shutil.rmtree(ASSETS)
-manifest = {
-    "title": "Pose Studio Doll Gallery",
-    "lora": "VNCCS Pose Studio for Qwen Image 2.1 (V2)",
-    "mockup": True,
-    "sections": {},
-}
-for skey, s in SHAPES.items():
+manifest = {"title": "Pose Studio Doll Gallery", "lora": "VNCCS Pose Studio for Qwen Image 2.1 (V2)",
+            "poses_source": "Totemistyk/General_Poses_PoseStudio @23468b2b", "sections": {}}
+order = sorted(st, key=lambda k: pretty(st[k]["src"]))
+for shape, (title, aspect, size) in SHAPES.items():
+    label, photo_src = PEOPLE[shape]
+    d = os.path.join(ASSETS, shape)
+    photo = os.path.join(d, "photos", "person.jpg")
+    jpeg(photo_src, photo)
     poses = []
-    seen_photos = {}
-    for pkey, name, family in POSES:
-        d = os.path.join(ASSETS, skey)
-        doll_png = os.path.join(d, "dolls", pkey + ".png")
-        os.makedirs(os.path.dirname(doll_png), exist_ok=True)
-        shutil.copyfile(os.path.join(SRC, s["doll"].format(p=pkey)), doll_png)
-        doll_thumb = os.path.join(d, "thumbs", pkey + "_doll.jpg")
-        jpeg(doll_png, doll_thumb, THUMB)
-        examples = []
-        for i, (label, photo, result) in enumerate(s["people"]):
-            if photo not in seen_photos:
-                ph = os.path.join(d, "photos", "person%d.jpg" % (i + 1))
-                jpeg(os.path.join(SRC, photo), ph)
-                seen_photos[photo] = rel(ph)
-            res = os.path.join(d, "results", "%s_person%d.jpg" % (pkey, i + 1))
-            jpeg(os.path.join(SRC, result.format(p=pkey)), res)
-            res_t = os.path.join(d, "thumbs", "%s_person%d.jpg" % (pkey, i + 1))
-            jpeg(res, res_t, THUMB)
-            examples.append({"label": label, "photo": seen_photos[photo], "result": rel(res), "thumb": rel(res_t)})
-        poses.append({"name": name, "family": family, "doll": rel(doll_png), "doll_thumb": rel(doll_thumb),
-                      "download_name": "%s_%s.png" % (name.replace(" - ", "_").replace(" ", "_").lower(), skey),
-                      "examples": examples})
-    manifest["sections"][skey] = {"title": s["title"], "aspect": s["aspect"], "size": s["size"], "poses": poses}
+    for k in order:
+        family, name = pretty(st[k]["src"])
+        doll_src = st[k]["final"] if shape == "square" else os.path.join(SRC, "renders", "framing", "doll_pgp_%s_00001_.png" % k)
+        res_src = os.path.join(SRC, "examples", shape, k + ".png")
+        if not os.path.exists(res_src):
+            continue
+        slug = k.split("-", 1)[1]
+        doll = os.path.join(d, "dolls", slug + ".png")
+        os.makedirs(os.path.dirname(doll), exist_ok=True)
+        shutil.copyfile(doll_src, doll)
+        dthumb = os.path.join(d, "thumbs", slug + "_doll.jpg")
+        jpeg(doll, dthumb, THUMB)
+        res = os.path.join(d, "results", slug + ".jpg")
+        jpeg(res_src, res)
+        rthumb = os.path.join(d, "thumbs", slug + ".jpg")
+        jpeg(res, rthumb, THUMB)
+        poses.append({"name": name, "family": family, "doll": rel(doll), "doll_thumb": rel(dthumb),
+                      "download_name": "pose_%s_%s.png" % (slug, shape),
+                      "examples": [{"label": label, "photo": rel(photo), "result": rel(res), "thumb": rel(rthumb)}]})
+    manifest["sections"][shape] = {"title": title, "aspect": aspect, "size": size, "poses": poses}
 
 with open(os.path.join(ROOT, "manifest.json"), "w", encoding="utf-8", newline="\n") as f:
     json.dump(manifest, f, ensure_ascii=False, indent=1)

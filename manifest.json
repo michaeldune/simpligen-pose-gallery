@@ -1,7 +1,7 @@
 {
  "title": "Pose Studio Doll Gallery",
  "lora": "VNCCS Pose Studio for Qwen Image 2.1 (V2)",
- "mockup": true,
+ "poses_source": "Totemistyk/General_Poses_PoseStudio @23468b2b",
  "sections": {
   "square": {
    "title": "Square 1:1",
@@ -9,86 +9,692 @@
    "size": "1024 x 1024",
    "poses": [
     {
-     "name": "Boxing Stance",
-     "family": "Fighting",
-     "doll": "assets/square/dolls/boxing.png",
-     "doll_thumb": "assets/square/thumbs/boxing_doll.jpg",
-     "download_name": "boxing_stance_square.png",
+     "name": "Crawling",
+     "family": "Crawling",
+     "doll": "assets/square/dolls/crawling.png",
+     "doll_thumb": "assets/square/thumbs/crawling_doll.jpg",
+     "download_name": "pose_crawling_square.png",
      "examples": [
       {
        "label": "Woman, plaza",
-       "photo": "assets/square/photos/person1.jpg",
-       "result": "assets/square/results/boxing_person1.jpg",
-       "thumb": "assets/square/thumbs/boxing_person1.jpg"
-      },
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/crawling.jpg",
+       "thumb": "assets/square/thumbs/crawling.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Crawling - Rear View",
+     "family": "Crawling",
+     "doll": "assets/square/dolls/crawling_-_rear_view.png",
+     "doll_thumb": "assets/square/thumbs/crawling_-_rear_view_doll.jpg",
+     "download_name": "pose_crawling_-_rear_view_square.png",
+     "examples": [
       {
-       "label": "Man, rooftop",
-       "photo": "assets/square/photos/person2.jpg",
-       "result": "assets/square/results/boxing_person2.jpg",
-       "thumb": "assets/square/thumbs/boxing_person2.jpg"
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/crawling_-_rear_view.jpg",
+       "thumb": "assets/square/thumbs/crawling_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Crouching - Side View",
+     "family": "Crouching",
+     "doll": "assets/square/dolls/crouching_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/crouching_-_side_view_doll.jpg",
+     "download_name": "pose_crouching_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/crouching_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/crouching_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Squatting",
+     "family": "Crouching",
+     "doll": "assets/square/dolls/squatting.png",
+     "doll_thumb": "assets/square/thumbs/squatting_doll.jpg",
+     "download_name": "pose_squatting_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/squatting.jpg",
+       "thumb": "assets/square/thumbs/squatting.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Boxing Stance",
+     "family": "Fighting",
+     "doll": "assets/square/dolls/boxing_stance.png",
+     "doll_thumb": "assets/square/thumbs/boxing_stance_doll.jpg",
+     "download_name": "pose_boxing_stance_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/boxing_stance.jpg",
+       "thumb": "assets/square/thumbs/boxing_stance.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Fighting - Right Jab",
+     "family": "Fighting",
+     "doll": "assets/square/dolls/fighting_-_right_jab.png",
+     "doll_thumb": "assets/square/thumbs/fighting_-_right_jab_doll.jpg",
+     "download_name": "pose_fighting_-_right_jab_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/fighting_-_right_jab.jpg",
+       "thumb": "assets/square/thumbs/fighting_-_right_jab.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Handstand",
+     "family": "Gymnastics",
+     "doll": "assets/square/dolls/handstand.png",
+     "doll_thumb": "assets/square/thumbs/handstand_doll.jpg",
+     "download_name": "pose_handstand_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/handstand.jpg",
+       "thumb": "assets/square/thumbs/handstand.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Middle Splits",
+     "family": "Gymnastics",
+     "doll": "assets/square/dolls/middle_splits.png",
+     "doll_thumb": "assets/square/thumbs/middle_splits_doll.jpg",
+     "download_name": "pose_middle_splits_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/middle_splits.jpg",
+       "thumb": "assets/square/thumbs/middle_splits.jpg"
       }
      ]
     },
     {
      "name": "Kneeling - Side View",
      "family": "Kneeling",
-     "doll": "assets/square/dolls/kneeling.png",
-     "doll_thumb": "assets/square/thumbs/kneeling_doll.jpg",
-     "download_name": "kneeling_side_view_square.png",
+     "doll": "assets/square/dolls/kneeling_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/kneeling_-_side_view_doll.jpg",
+     "download_name": "pose_kneeling_-_side_view_square.png",
      "examples": [
       {
        "label": "Woman, plaza",
-       "photo": "assets/square/photos/person1.jpg",
-       "result": "assets/square/results/kneeling_person1.jpg",
-       "thumb": "assets/square/thumbs/kneeling_person1.jpg"
-      },
-      {
-       "label": "Man, rooftop",
-       "photo": "assets/square/photos/person2.jpg",
-       "result": "assets/square/results/kneeling_person2.jpg",
-       "thumb": "assets/square/thumbs/kneeling_person2.jpg"
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/kneeling_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/kneeling_-_side_view.jpg"
       }
      ]
     },
     {
-     "name": "Crawling",
-     "family": "Crawling",
-     "doll": "assets/square/dolls/crawling.png",
-     "doll_thumb": "assets/square/thumbs/crawling_doll.jpg",
-     "download_name": "crawling_square.png",
+     "name": "Kneeling Legs Spread",
+     "family": "Kneeling",
+     "doll": "assets/square/dolls/kneeling_legs_spread.png",
+     "doll_thumb": "assets/square/thumbs/kneeling_legs_spread_doll.jpg",
+     "download_name": "pose_kneeling_legs_spread_square.png",
      "examples": [
       {
        "label": "Woman, plaza",
-       "photo": "assets/square/photos/person1.jpg",
-       "result": "assets/square/results/crawling_person1.jpg",
-       "thumb": "assets/square/thumbs/crawling_person1.jpg"
-      },
-      {
-       "label": "Man, rooftop",
-       "photo": "assets/square/photos/person2.jpg",
-       "result": "assets/square/results/crawling_person2.jpg",
-       "thumb": "assets/square/thumbs/crawling_person2.jpg"
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/kneeling_legs_spread.jpg",
+       "thumb": "assets/square/thumbs/kneeling_legs_spread.jpg"
       }
      ]
     },
     {
-     "name": "Seated on Floor",
+     "name": "Kneeling on One Knee",
+     "family": "Kneeling",
+     "doll": "assets/square/dolls/kneeling_on_one_knee.png",
+     "doll_thumb": "assets/square/thumbs/kneeling_on_one_knee_doll.jpg",
+     "download_name": "pose_kneeling_on_one_knee_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/kneeling_on_one_knee.jpg",
+       "thumb": "assets/square/thumbs/kneeling_on_one_knee.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Seiza",
+     "family": "Kneeling",
+     "doll": "assets/square/dolls/seiza.png",
+     "doll_thumb": "assets/square/thumbs/seiza_doll.jpg",
+     "download_name": "pose_seiza_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/seiza.jpg",
+       "thumb": "assets/square/thumbs/seiza.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Fetal Position - Rear View",
      "family": "Sitting",
-     "doll": "assets/square/dolls/seated.png",
-     "doll_thumb": "assets/square/thumbs/seated_doll.jpg",
-     "download_name": "seated_on_floor_square.png",
+     "doll": "assets/square/dolls/fetal_position_-_rear_view.png",
+     "doll_thumb": "assets/square/thumbs/fetal_position_-_rear_view_doll.jpg",
+     "download_name": "pose_fetal_position_-_rear_view_square.png",
      "examples": [
       {
        "label": "Woman, plaza",
-       "photo": "assets/square/photos/person1.jpg",
-       "result": "assets/square/results/seated_person1.jpg",
-       "thumb": "assets/square/thumbs/seated_person1.jpg"
-      },
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/fetal_position_-_rear_view.jpg",
+       "thumb": "assets/square/thumbs/fetal_position_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Leaning Back",
+     "family": "Sitting",
+     "doll": "assets/square/dolls/leaning_back.png",
+     "doll_thumb": "assets/square/thumbs/leaning_back_doll.jpg",
+     "download_name": "pose_leaning_back_square.png",
+     "examples": [
       {
-       "label": "Man, rooftop",
-       "photo": "assets/square/photos/person2.jpg",
-       "result": "assets/square/results/seated_person2.jpg",
-       "thumb": "assets/square/thumbs/seated_person2.jpg"
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/leaning_back.jpg",
+       "thumb": "assets/square/thumbs/leaning_back.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Sitting",
+     "family": "Sitting",
+     "doll": "assets/square/dolls/sitting.png",
+     "doll_thumb": "assets/square/thumbs/sitting_doll.jpg",
+     "download_name": "pose_sitting_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/sitting.jpg",
+       "thumb": "assets/square/thumbs/sitting.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Sitting - Rear View",
+     "family": "Sitting",
+     "doll": "assets/square/dolls/sitting_-_rear_view.png",
+     "doll_thumb": "assets/square/thumbs/sitting_-_rear_view_doll.jpg",
+     "download_name": "pose_sitting_-_rear_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/sitting_-_rear_view.jpg",
+       "thumb": "assets/square/thumbs/sitting_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Sitting - Side View",
+     "family": "Sitting",
+     "doll": "assets/square/dolls/sitting_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/sitting_-_side_view_doll.jpg",
+     "download_name": "pose_sitting_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/sitting_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/sitting_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Sitting Cross Legged",
+     "family": "Sitting",
+     "doll": "assets/square/dolls/sitting_cross_legged.png",
+     "doll_thumb": "assets/square/thumbs/sitting_cross_legged_doll.jpg",
+     "download_name": "pose_sitting_cross_legged_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/sitting_cross_legged.jpg",
+       "thumb": "assets/square/thumbs/sitting_cross_legged.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Behind Back - Side View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/arms_behind_back_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/arms_behind_back_-_side_view_doll.jpg",
+     "download_name": "pose_arms_behind_back_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/arms_behind_back_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/arms_behind_back_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Crossed",
+     "family": "Standing",
+     "doll": "assets/square/dolls/arms_crossed.png",
+     "doll_thumb": "assets/square/thumbs/arms_crossed_doll.jpg",
+     "download_name": "pose_arms_crossed_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/arms_crossed.jpg",
+       "thumb": "assets/square/thumbs/arms_crossed.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Extended Backwards - Side View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/arms_extended_backwards_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/arms_extended_backwards_-_side_view_doll.jpg",
+     "download_name": "pose_arms_extended_backwards_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/arms_extended_backwards_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/arms_extended_backwards_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Extended Forward - Side View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/arms_extended_forward_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/arms_extended_forward_-_side_view_doll.jpg",
+     "download_name": "pose_arms_extended_forward_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/arms_extended_forward_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/arms_extended_forward_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Outstretched",
+     "family": "Standing",
+     "doll": "assets/square/dolls/arms_outstretched.png",
+     "doll_thumb": "assets/square/thumbs/arms_outstretched_doll.jpg",
+     "download_name": "pose_arms_outstretched_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/arms_outstretched.jpg",
+       "thumb": "assets/square/thumbs/arms_outstretched.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Raised",
+     "family": "Standing",
+     "doll": "assets/square/dolls/arms_raised.png",
+     "doll_thumb": "assets/square/thumbs/arms_raised_doll.jpg",
+     "download_name": "pose_arms_raised_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/arms_raised.jpg",
+       "thumb": "assets/square/thumbs/arms_raised.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Up",
+     "family": "Standing",
+     "doll": "assets/square/dolls/arms_up.png",
+     "doll_thumb": "assets/square/thumbs/arms_up_doll.jpg",
+     "download_name": "pose_arms_up_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/arms_up.jpg",
+       "thumb": "assets/square/thumbs/arms_up.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Contrapposto",
+     "family": "Standing",
+     "doll": "assets/square/dolls/contrapposto.png",
+     "doll_thumb": "assets/square/thumbs/contrapposto_doll.jpg",
+     "download_name": "pose_contrapposto_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/contrapposto.jpg",
+       "thumb": "assets/square/thumbs/contrapposto.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Contrapposto - Hand on Hip",
+     "family": "Standing",
+     "doll": "assets/square/dolls/contrapposto_-_hand_on_hip.png",
+     "doll_thumb": "assets/square/thumbs/contrapposto_-_hand_on_hip_doll.jpg",
+     "download_name": "pose_contrapposto_-_hand_on_hip_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/contrapposto_-_hand_on_hip.jpg",
+       "thumb": "assets/square/thumbs/contrapposto_-_hand_on_hip.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Contrapposto - Rear View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/contrapposto_-_rear_view.png",
+     "doll_thumb": "assets/square/thumbs/contrapposto_-_rear_view_doll.jpg",
+     "download_name": "pose_contrapposto_-_rear_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/contrapposto_-_rear_view.jpg",
+       "thumb": "assets/square/thumbs/contrapposto_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Feet Apart - Side View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/feet_apart_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/feet_apart_-_side_view_doll.jpg",
+     "download_name": "pose_feet_apart_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/feet_apart_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/feet_apart_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Hands on hips - Rear View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/hands_on_hips_-_rear_view.png",
+     "doll_thumb": "assets/square/thumbs/hands_on_hips_-_rear_view_doll.jpg",
+     "download_name": "pose_hands_on_hips_-_rear_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/hands_on_hips_-_rear_view.jpg",
+       "thumb": "assets/square/thumbs/hands_on_hips_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Leaning Back - Side View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/leaning_back_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/leaning_back_-_side_view_doll.jpg",
+     "download_name": "pose_leaning_back_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/leaning_back_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/leaning_back_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Leaning Forward",
+     "family": "Standing",
+     "doll": "assets/square/dolls/leaning_forward.png",
+     "doll_thumb": "assets/square/thumbs/leaning_forward_doll.jpg",
+     "download_name": "pose_leaning_forward_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/leaning_forward.jpg",
+       "thumb": "assets/square/thumbs/leaning_forward.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Leaning Forward - Side View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/leaning_forward_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/leaning_forward_-_side_view_doll.jpg",
+     "download_name": "pose_leaning_forward_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/leaning_forward_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/leaning_forward_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "One Arm Raised",
+     "family": "Standing",
+     "doll": "assets/square/dolls/one_arm_raised.png",
+     "doll_thumb": "assets/square/thumbs/one_arm_raised_doll.jpg",
+     "download_name": "pose_one_arm_raised_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/one_arm_raised.jpg",
+       "thumb": "assets/square/thumbs/one_arm_raised.jpg"
+      }
+     ]
+    },
+    {
+     "name": "One Hand on Hip",
+     "family": "Standing",
+     "doll": "assets/square/dolls/one_hand_on_hip.png",
+     "doll_thumb": "assets/square/thumbs/one_hand_on_hip_doll.jpg",
+     "download_name": "pose_one_hand_on_hip_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/one_hand_on_hip.jpg",
+       "thumb": "assets/square/thumbs/one_hand_on_hip.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Slight Lean Back",
+     "family": "Standing",
+     "doll": "assets/square/dolls/slight_lean_back.png",
+     "doll_thumb": "assets/square/thumbs/slight_lean_back_doll.jpg",
+     "download_name": "pose_slight_lean_back_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/slight_lean_back.jpg",
+       "thumb": "assets/square/thumbs/slight_lean_back.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing",
+     "family": "Standing",
+     "doll": "assets/square/dolls/standing.png",
+     "doll_thumb": "assets/square/thumbs/standing_doll.jpg",
+     "download_name": "pose_standing_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/standing.jpg",
+       "thumb": "assets/square/thumbs/standing.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing - Hands Behind Back",
+     "family": "Standing",
+     "doll": "assets/square/dolls/standing_-_hands_behind_back.png",
+     "doll_thumb": "assets/square/thumbs/standing_-_hands_behind_back_doll.jpg",
+     "download_name": "pose_standing_-_hands_behind_back_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/standing_-_hands_behind_back.jpg",
+       "thumb": "assets/square/thumbs/standing_-_hands_behind_back.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing - Leaning Forward",
+     "family": "Standing",
+     "doll": "assets/square/dolls/standing_-_leaning_forward.png",
+     "doll_thumb": "assets/square/thumbs/standing_-_leaning_forward_doll.jpg",
+     "download_name": "pose_standing_-_leaning_forward_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/standing_-_leaning_forward.jpg",
+       "thumb": "assets/square/thumbs/standing_-_leaning_forward.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing - Rear View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/standing_-_rear_view.png",
+     "doll_thumb": "assets/square/thumbs/standing_-_rear_view_doll.jpg",
+     "download_name": "pose_standing_-_rear_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/standing_-_rear_view.jpg",
+       "thumb": "assets/square/thumbs/standing_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing - Side View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/standing_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/standing_-_side_view_doll.jpg",
+     "download_name": "pose_standing_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/standing_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/standing_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Stepping",
+     "family": "Standing",
+     "doll": "assets/square/dolls/stepping.png",
+     "doll_thumb": "assets/square/thumbs/stepping_doll.jpg",
+     "download_name": "pose_stepping_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/stepping.jpg",
+       "thumb": "assets/square/thumbs/stepping.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Touching Toes - Side View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/touching_toes_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/touching_toes_-_side_view_doll.jpg",
+     "download_name": "pose_touching_toes_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/touching_toes_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/touching_toes_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Weight on One Leg - Side View",
+     "family": "Standing",
+     "doll": "assets/square/dolls/weight_on_one_leg_-_side_view.png",
+     "doll_thumb": "assets/square/thumbs/weight_on_one_leg_-_side_view_doll.jpg",
+     "download_name": "pose_weight_on_one_leg_-_side_view_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/weight_on_one_leg_-_side_view.jpg",
+       "thumb": "assets/square/thumbs/weight_on_one_leg_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Downward Dog",
+     "family": "Yoga",
+     "doll": "assets/square/dolls/downward_dog.png",
+     "doll_thumb": "assets/square/thumbs/downward_dog_doll.jpg",
+     "download_name": "pose_downward_dog_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/downward_dog.jpg",
+       "thumb": "assets/square/thumbs/downward_dog.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Warrior",
+     "family": "Yoga",
+     "doll": "assets/square/dolls/warrior.png",
+     "doll_thumb": "assets/square/thumbs/warrior_doll.jpg",
+     "download_name": "pose_warrior_square.png",
+     "examples": [
+      {
+       "label": "Woman, plaza",
+       "photo": "assets/square/photos/person.jpg",
+       "result": "assets/square/results/warrior.jpg",
+       "thumb": "assets/square/thumbs/warrior.jpg"
       }
      ]
     }
@@ -100,86 +706,692 @@
    "size": "864 x 1152",
    "poses": [
     {
-     "name": "Boxing Stance",
-     "family": "Fighting",
-     "doll": "assets/portrait/dolls/boxing.png",
-     "doll_thumb": "assets/portrait/thumbs/boxing_doll.jpg",
-     "download_name": "boxing_stance_portrait.png",
+     "name": "Crawling",
+     "family": "Crawling",
+     "doll": "assets/portrait/dolls/crawling.png",
+     "doll_thumb": "assets/portrait/thumbs/crawling_doll.jpg",
+     "download_name": "pose_crawling_portrait.png",
      "examples": [
       {
-       "label": "Woman, plaza",
-       "photo": "assets/portrait/photos/person1.jpg",
-       "result": "assets/portrait/results/boxing_person1.jpg",
-       "thumb": "assets/portrait/thumbs/boxing_person1.jpg"
-      },
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/crawling.jpg",
+       "thumb": "assets/portrait/thumbs/crawling.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Crawling - Rear View",
+     "family": "Crawling",
+     "doll": "assets/portrait/dolls/crawling_-_rear_view.png",
+     "doll_thumb": "assets/portrait/thumbs/crawling_-_rear_view_doll.jpg",
+     "download_name": "pose_crawling_-_rear_view_portrait.png",
+     "examples": [
       {
        "label": "Man, rooftop",
-       "photo": "assets/portrait/photos/person2.jpg",
-       "result": "assets/portrait/results/boxing_person2.jpg",
-       "thumb": "assets/portrait/thumbs/boxing_person2.jpg"
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/crawling_-_rear_view.jpg",
+       "thumb": "assets/portrait/thumbs/crawling_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Crouching - Side View",
+     "family": "Crouching",
+     "doll": "assets/portrait/dolls/crouching_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/crouching_-_side_view_doll.jpg",
+     "download_name": "pose_crouching_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/crouching_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/crouching_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Squatting",
+     "family": "Crouching",
+     "doll": "assets/portrait/dolls/squatting.png",
+     "doll_thumb": "assets/portrait/thumbs/squatting_doll.jpg",
+     "download_name": "pose_squatting_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/squatting.jpg",
+       "thumb": "assets/portrait/thumbs/squatting.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Boxing Stance",
+     "family": "Fighting",
+     "doll": "assets/portrait/dolls/boxing_stance.png",
+     "doll_thumb": "assets/portrait/thumbs/boxing_stance_doll.jpg",
+     "download_name": "pose_boxing_stance_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/boxing_stance.jpg",
+       "thumb": "assets/portrait/thumbs/boxing_stance.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Fighting - Right Jab",
+     "family": "Fighting",
+     "doll": "assets/portrait/dolls/fighting_-_right_jab.png",
+     "doll_thumb": "assets/portrait/thumbs/fighting_-_right_jab_doll.jpg",
+     "download_name": "pose_fighting_-_right_jab_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/fighting_-_right_jab.jpg",
+       "thumb": "assets/portrait/thumbs/fighting_-_right_jab.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Handstand",
+     "family": "Gymnastics",
+     "doll": "assets/portrait/dolls/handstand.png",
+     "doll_thumb": "assets/portrait/thumbs/handstand_doll.jpg",
+     "download_name": "pose_handstand_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/handstand.jpg",
+       "thumb": "assets/portrait/thumbs/handstand.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Middle Splits",
+     "family": "Gymnastics",
+     "doll": "assets/portrait/dolls/middle_splits.png",
+     "doll_thumb": "assets/portrait/thumbs/middle_splits_doll.jpg",
+     "download_name": "pose_middle_splits_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/middle_splits.jpg",
+       "thumb": "assets/portrait/thumbs/middle_splits.jpg"
       }
      ]
     },
     {
      "name": "Kneeling - Side View",
      "family": "Kneeling",
-     "doll": "assets/portrait/dolls/kneeling.png",
-     "doll_thumb": "assets/portrait/thumbs/kneeling_doll.jpg",
-     "download_name": "kneeling_side_view_portrait.png",
+     "doll": "assets/portrait/dolls/kneeling_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/kneeling_-_side_view_doll.jpg",
+     "download_name": "pose_kneeling_-_side_view_portrait.png",
      "examples": [
       {
-       "label": "Woman, plaza",
-       "photo": "assets/portrait/photos/person1.jpg",
-       "result": "assets/portrait/results/kneeling_person1.jpg",
-       "thumb": "assets/portrait/thumbs/kneeling_person1.jpg"
-      },
-      {
        "label": "Man, rooftop",
-       "photo": "assets/portrait/photos/person2.jpg",
-       "result": "assets/portrait/results/kneeling_person2.jpg",
-       "thumb": "assets/portrait/thumbs/kneeling_person2.jpg"
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/kneeling_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/kneeling_-_side_view.jpg"
       }
      ]
     },
     {
-     "name": "Crawling",
-     "family": "Crawling",
-     "doll": "assets/portrait/dolls/crawling.png",
-     "doll_thumb": "assets/portrait/thumbs/crawling_doll.jpg",
-     "download_name": "crawling_portrait.png",
+     "name": "Kneeling Legs Spread",
+     "family": "Kneeling",
+     "doll": "assets/portrait/dolls/kneeling_legs_spread.png",
+     "doll_thumb": "assets/portrait/thumbs/kneeling_legs_spread_doll.jpg",
+     "download_name": "pose_kneeling_legs_spread_portrait.png",
      "examples": [
       {
-       "label": "Woman, plaza",
-       "photo": "assets/portrait/photos/person1.jpg",
-       "result": "assets/portrait/results/crawling_person1.jpg",
-       "thumb": "assets/portrait/thumbs/crawling_person1.jpg"
-      },
-      {
        "label": "Man, rooftop",
-       "photo": "assets/portrait/photos/person2.jpg",
-       "result": "assets/portrait/results/crawling_person2.jpg",
-       "thumb": "assets/portrait/thumbs/crawling_person2.jpg"
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/kneeling_legs_spread.jpg",
+       "thumb": "assets/portrait/thumbs/kneeling_legs_spread.jpg"
       }
      ]
     },
     {
-     "name": "Seated on Floor",
+     "name": "Kneeling on One Knee",
+     "family": "Kneeling",
+     "doll": "assets/portrait/dolls/kneeling_on_one_knee.png",
+     "doll_thumb": "assets/portrait/thumbs/kneeling_on_one_knee_doll.jpg",
+     "download_name": "pose_kneeling_on_one_knee_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/kneeling_on_one_knee.jpg",
+       "thumb": "assets/portrait/thumbs/kneeling_on_one_knee.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Seiza",
+     "family": "Kneeling",
+     "doll": "assets/portrait/dolls/seiza.png",
+     "doll_thumb": "assets/portrait/thumbs/seiza_doll.jpg",
+     "download_name": "pose_seiza_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/seiza.jpg",
+       "thumb": "assets/portrait/thumbs/seiza.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Fetal Position - Rear View",
      "family": "Sitting",
-     "doll": "assets/portrait/dolls/seated.png",
-     "doll_thumb": "assets/portrait/thumbs/seated_doll.jpg",
-     "download_name": "seated_on_floor_portrait.png",
+     "doll": "assets/portrait/dolls/fetal_position_-_rear_view.png",
+     "doll_thumb": "assets/portrait/thumbs/fetal_position_-_rear_view_doll.jpg",
+     "download_name": "pose_fetal_position_-_rear_view_portrait.png",
      "examples": [
       {
-       "label": "Woman, plaza",
-       "photo": "assets/portrait/photos/person1.jpg",
-       "result": "assets/portrait/results/seated_person1.jpg",
-       "thumb": "assets/portrait/thumbs/seated_person1.jpg"
-      },
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/fetal_position_-_rear_view.jpg",
+       "thumb": "assets/portrait/thumbs/fetal_position_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Leaning Back",
+     "family": "Sitting",
+     "doll": "assets/portrait/dolls/leaning_back.png",
+     "doll_thumb": "assets/portrait/thumbs/leaning_back_doll.jpg",
+     "download_name": "pose_leaning_back_portrait.png",
+     "examples": [
       {
        "label": "Man, rooftop",
-       "photo": "assets/portrait/photos/person2.jpg",
-       "result": "assets/portrait/results/seated_person2.jpg",
-       "thumb": "assets/portrait/thumbs/seated_person2.jpg"
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/leaning_back.jpg",
+       "thumb": "assets/portrait/thumbs/leaning_back.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Sitting",
+     "family": "Sitting",
+     "doll": "assets/portrait/dolls/sitting.png",
+     "doll_thumb": "assets/portrait/thumbs/sitting_doll.jpg",
+     "download_name": "pose_sitting_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/sitting.jpg",
+       "thumb": "assets/portrait/thumbs/sitting.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Sitting - Rear View",
+     "family": "Sitting",
+     "doll": "assets/portrait/dolls/sitting_-_rear_view.png",
+     "doll_thumb": "assets/portrait/thumbs/sitting_-_rear_view_doll.jpg",
+     "download_name": "pose_sitting_-_rear_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/sitting_-_rear_view.jpg",
+       "thumb": "assets/portrait/thumbs/sitting_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Sitting - Side View",
+     "family": "Sitting",
+     "doll": "assets/portrait/dolls/sitting_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/sitting_-_side_view_doll.jpg",
+     "download_name": "pose_sitting_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/sitting_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/sitting_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Sitting Cross Legged",
+     "family": "Sitting",
+     "doll": "assets/portrait/dolls/sitting_cross_legged.png",
+     "doll_thumb": "assets/portrait/thumbs/sitting_cross_legged_doll.jpg",
+     "download_name": "pose_sitting_cross_legged_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/sitting_cross_legged.jpg",
+       "thumb": "assets/portrait/thumbs/sitting_cross_legged.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Behind Back - Side View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/arms_behind_back_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/arms_behind_back_-_side_view_doll.jpg",
+     "download_name": "pose_arms_behind_back_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/arms_behind_back_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/arms_behind_back_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Crossed",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/arms_crossed.png",
+     "doll_thumb": "assets/portrait/thumbs/arms_crossed_doll.jpg",
+     "download_name": "pose_arms_crossed_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/arms_crossed.jpg",
+       "thumb": "assets/portrait/thumbs/arms_crossed.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Extended Backwards - Side View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/arms_extended_backwards_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/arms_extended_backwards_-_side_view_doll.jpg",
+     "download_name": "pose_arms_extended_backwards_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/arms_extended_backwards_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/arms_extended_backwards_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Extended Forward - Side View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/arms_extended_forward_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/arms_extended_forward_-_side_view_doll.jpg",
+     "download_name": "pose_arms_extended_forward_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/arms_extended_forward_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/arms_extended_forward_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Outstretched",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/arms_outstretched.png",
+     "doll_thumb": "assets/portrait/thumbs/arms_outstretched_doll.jpg",
+     "download_name": "pose_arms_outstretched_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/arms_outstretched.jpg",
+       "thumb": "assets/portrait/thumbs/arms_outstretched.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Raised",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/arms_raised.png",
+     "doll_thumb": "assets/portrait/thumbs/arms_raised_doll.jpg",
+     "download_name": "pose_arms_raised_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/arms_raised.jpg",
+       "thumb": "assets/portrait/thumbs/arms_raised.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Arms Up",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/arms_up.png",
+     "doll_thumb": "assets/portrait/thumbs/arms_up_doll.jpg",
+     "download_name": "pose_arms_up_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/arms_up.jpg",
+       "thumb": "assets/portrait/thumbs/arms_up.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Contrapposto",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/contrapposto.png",
+     "doll_thumb": "assets/portrait/thumbs/contrapposto_doll.jpg",
+     "download_name": "pose_contrapposto_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/contrapposto.jpg",
+       "thumb": "assets/portrait/thumbs/contrapposto.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Contrapposto - Hand on Hip",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/contrapposto_-_hand_on_hip.png",
+     "doll_thumb": "assets/portrait/thumbs/contrapposto_-_hand_on_hip_doll.jpg",
+     "download_name": "pose_contrapposto_-_hand_on_hip_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/contrapposto_-_hand_on_hip.jpg",
+       "thumb": "assets/portrait/thumbs/contrapposto_-_hand_on_hip.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Contrapposto - Rear View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/contrapposto_-_rear_view.png",
+     "doll_thumb": "assets/portrait/thumbs/contrapposto_-_rear_view_doll.jpg",
+     "download_name": "pose_contrapposto_-_rear_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/contrapposto_-_rear_view.jpg",
+       "thumb": "assets/portrait/thumbs/contrapposto_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Feet Apart - Side View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/feet_apart_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/feet_apart_-_side_view_doll.jpg",
+     "download_name": "pose_feet_apart_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/feet_apart_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/feet_apart_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Hands on hips - Rear View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/hands_on_hips_-_rear_view.png",
+     "doll_thumb": "assets/portrait/thumbs/hands_on_hips_-_rear_view_doll.jpg",
+     "download_name": "pose_hands_on_hips_-_rear_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/hands_on_hips_-_rear_view.jpg",
+       "thumb": "assets/portrait/thumbs/hands_on_hips_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Leaning Back - Side View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/leaning_back_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/leaning_back_-_side_view_doll.jpg",
+     "download_name": "pose_leaning_back_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/leaning_back_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/leaning_back_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Leaning Forward",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/leaning_forward.png",
+     "doll_thumb": "assets/portrait/thumbs/leaning_forward_doll.jpg",
+     "download_name": "pose_leaning_forward_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/leaning_forward.jpg",
+       "thumb": "assets/portrait/thumbs/leaning_forward.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Leaning Forward - Side View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/leaning_forward_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/leaning_forward_-_side_view_doll.jpg",
+     "download_name": "pose_leaning_forward_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/leaning_forward_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/leaning_forward_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "One Arm Raised",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/one_arm_raised.png",
+     "doll_thumb": "assets/portrait/thumbs/one_arm_raised_doll.jpg",
+     "download_name": "pose_one_arm_raised_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/one_arm_raised.jpg",
+       "thumb": "assets/portrait/thumbs/one_arm_raised.jpg"
+      }
+     ]
+    },
+    {
+     "name": "One Hand on Hip",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/one_hand_on_hip.png",
+     "doll_thumb": "assets/portrait/thumbs/one_hand_on_hip_doll.jpg",
+     "download_name": "pose_one_hand_on_hip_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/one_hand_on_hip.jpg",
+       "thumb": "assets/portrait/thumbs/one_hand_on_hip.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Slight Lean Back",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/slight_lean_back.png",
+     "doll_thumb": "assets/portrait/thumbs/slight_lean_back_doll.jpg",
+     "download_name": "pose_slight_lean_back_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/slight_lean_back.jpg",
+       "thumb": "assets/portrait/thumbs/slight_lean_back.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/standing.png",
+     "doll_thumb": "assets/portrait/thumbs/standing_doll.jpg",
+     "download_name": "pose_standing_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/standing.jpg",
+       "thumb": "assets/portrait/thumbs/standing.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing - Hands Behind Back",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/standing_-_hands_behind_back.png",
+     "doll_thumb": "assets/portrait/thumbs/standing_-_hands_behind_back_doll.jpg",
+     "download_name": "pose_standing_-_hands_behind_back_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/standing_-_hands_behind_back.jpg",
+       "thumb": "assets/portrait/thumbs/standing_-_hands_behind_back.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing - Leaning Forward",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/standing_-_leaning_forward.png",
+     "doll_thumb": "assets/portrait/thumbs/standing_-_leaning_forward_doll.jpg",
+     "download_name": "pose_standing_-_leaning_forward_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/standing_-_leaning_forward.jpg",
+       "thumb": "assets/portrait/thumbs/standing_-_leaning_forward.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing - Rear View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/standing_-_rear_view.png",
+     "doll_thumb": "assets/portrait/thumbs/standing_-_rear_view_doll.jpg",
+     "download_name": "pose_standing_-_rear_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/standing_-_rear_view.jpg",
+       "thumb": "assets/portrait/thumbs/standing_-_rear_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Standing - Side View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/standing_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/standing_-_side_view_doll.jpg",
+     "download_name": "pose_standing_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/standing_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/standing_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Stepping",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/stepping.png",
+     "doll_thumb": "assets/portrait/thumbs/stepping_doll.jpg",
+     "download_name": "pose_stepping_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/stepping.jpg",
+       "thumb": "assets/portrait/thumbs/stepping.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Touching Toes - Side View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/touching_toes_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/touching_toes_-_side_view_doll.jpg",
+     "download_name": "pose_touching_toes_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/touching_toes_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/touching_toes_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Weight on One Leg - Side View",
+     "family": "Standing",
+     "doll": "assets/portrait/dolls/weight_on_one_leg_-_side_view.png",
+     "doll_thumb": "assets/portrait/thumbs/weight_on_one_leg_-_side_view_doll.jpg",
+     "download_name": "pose_weight_on_one_leg_-_side_view_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/weight_on_one_leg_-_side_view.jpg",
+       "thumb": "assets/portrait/thumbs/weight_on_one_leg_-_side_view.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Downward Dog",
+     "family": "Yoga",
+     "doll": "assets/portrait/dolls/downward_dog.png",
+     "doll_thumb": "assets/portrait/thumbs/downward_dog_doll.jpg",
+     "download_name": "pose_downward_dog_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/downward_dog.jpg",
+       "thumb": "assets/portrait/thumbs/downward_dog.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Warrior",
+     "family": "Yoga",
+     "doll": "assets/portrait/dolls/warrior.png",
+     "doll_thumb": "assets/portrait/thumbs/warrior_doll.jpg",
+     "download_name": "pose_warrior_portrait.png",
+     "examples": [
+      {
+       "label": "Man, rooftop",
+       "photo": "assets/portrait/photos/person.jpg",
+       "result": "assets/portrait/results/warrior.jpg",
+       "thumb": "assets/portrait/thumbs/warrior.jpg"
       }
      ]
     }

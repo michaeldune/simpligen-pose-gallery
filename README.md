@@ -5,7 +5,10 @@ Pick a pose, download the doll PNG, and give the card the doll as picture 1 and 
 person is moved into the doll's pose and keeps their face, outfit and background. Each pose opens in a split-slider
 view comparing the doll with real results.
 
-**Status: mock-up** with the four poses from the 2026-10-14 feasibility tests, in two shapes. Not published.
+46 poses from Totemistyk's General Poses library (pinned at `23468b2b`), each as a square 1024 x 1024 doll and a
+3:4 864 x 1152 doll, each with one example made by the SimpliGen card (seed 7). Live at
+https://michaeldune.github.io/simpligen-pose-gallery/. Left out: the four close-up and overhead poses, whose camera
+cannot stand on a floor line.
 
 ## Layout
 
