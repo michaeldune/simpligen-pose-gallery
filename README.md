@@ -5,10 +5,14 @@ Pick a pose, download the doll PNG, and give the card a full-body photo as pictu
 person is moved into the doll's pose and keeps their face, outfit and background. Each pose opens in a split-slider
 view comparing the doll with real results.
 
-46 poses from Totemistyk's General Poses library (pinned at `23468b2b`), each as a square 1024 x 1024 doll and a
-3:4 864 x 1152 doll, each with one example made by the SimpliGen card (seed 7). Live at
-https://michaeldune.github.io/simpligen-pose-gallery/. Left out: the four close-up and overhead poses, whose camera
-cannot stand on a floor line.
+159 poses, each as a square 1024 x 1024 doll and a 3:4 864 x 1152 doll, each with one example made by the SimpliGen
+card (seed 7). Live at https://michaeldune.github.io/simpligen-pose-gallery/. Two collections (filter on the page):
+
+- **General Poses** (46): Totemistyk's General Poses library (pinned at `23468b2b`). Left out: the four close-up and
+  overhead poses, whose camera cannot stand on a floor line.
+- **Krea2 Pose Library** (113): the poses of u/Afraid_Ambassador_43's 120 Krea2 pose prompts, recreated in Pose Studio by
+  reading each reference picture with its SAM 3D Body import (`pose_image` input). The reference pictures are not
+  included. Left out: the 7 overhead views.
 
 ## Layout
 
@@ -41,4 +45,6 @@ the V2 LoRA (two people, two seeds, four poses, both shapes).
 - Pose Studio and its Qwen Image 2.1 pose LoRA: MiuProject (VNCCS), https://github.com/AHEKOT/ComfyUI_VNCCS_Utils, MIT;
   use of the LoRA and of doll renders confirmed by the author (2026-10-14). The doll is built on MakeHuman.
 - Poses: Totemistyk, https://huggingface.co/Totemistyk/General_Poses_PoseStudio, used with permission (2026-10-14).
+- Krea2 Pose Library poses: u/Afraid_Ambassador_43, "120 Krea2 pose prompts",
+  https://www.reddit.com/r/comfyui/comments/1v79la4/120_krea2_pose_prompts/ .
 - Front end adapted from lumenastrum/clio-style-preview `gallery/index.html`, MIT; see `LICENSE-clio-style-preview`.

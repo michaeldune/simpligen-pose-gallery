@@ -229,6 +229,9 @@
 
 <div class="controls" id="controls" hidden>
   <nav class="tabs" id="tabs" aria-label="Shapes"></nav>
+  <select id="collectionFilter" class="family-filter" aria-label="Filter by pose collection" hidden>
+    <option value="">all collections</option>
+  </select>
   <select id="familyFilter" class="family-filter" aria-label="Filter by pose family" hidden>
     <option value="">all poses</option>
   </select>
@@ -276,6 +279,9 @@
   <h3>Credits</h3>
   Pose Studio and its Qwen Image 2.1 pose LoRA by <a href="https://github.com/AHEKOT/ComfyUI_VNCCS_Utils">MiuProject (VNCCS)</a>, MIT, used with the author's permission; the doll is built on MakeHuman.
   Poses from <a href="https://huggingface.co/Totemistyk/General_Poses_PoseStudio">Totemistyk's General Poses</a> library, used with permission.
+  The Krea2 Pose Library collection recreates the poses of u/Afraid_Ambassador_43's
+  <a href="https://www.reddit.com/r/comfyui/comments/1v79la4/120_krea2_pose_prompts/">120 Krea2 pose prompts</a>
+  in Pose Studio (each reference picture read with Pose Studio's SAM 3D Body import; the pictures themselves are not included).
   Gallery front end adapted from <a href="https://github.com/lumenastrum/clio-style-preview">lumenastrum/clio-style-preview</a> (MIT).
   Dolls rendered and framed for SimpliGen: every doll at the same scale, standing on the bottom tenth of the frame.
 </footer>
@@ -285,13 +291,13 @@
 <script>
 (function () {
   "use strict";
-  var manifest = null, sectionKeys = [], activeSection = null, query = "", activeFamily = "";
+  var manifest = null, sectionKeys = [], activeSection = null, query = "", activeFamily = "", activeCollection = "";
   var filtered = [], lbIndex = -1, exIndex = 0, splitPos = 0.5;
 
   var $ = function (id) { return document.getElementById(id); };
   var els = {
     main: $("main"), tabs: $("tabs"), search: $("search"), resultCount: $("resultCount"), controls: $("controls"),
-    familyFilter: $("familyFilter"), lightbox: $("lightbox"), splitStage: $("splitStage"), splitTop: $("splitTop"),
+    familyFilter: $("familyFilter"), collectionFilter: $("collectionFilter"), lightbox: $("lightbox"), splitStage: $("splitStage"), splitTop: $("splitTop"),
     imgDoll: $("imgDoll"), imgResult: $("imgResult"), splitDivider: $("splitDivider"), splitHandle: $("splitHandle"),
     lbName: $("lbName"), lbSub: $("lbSub"), lbDownload: $("lbDownload"), lbExamples: $("lbExamples"), lbPhoto: $("lbPhoto"),
   };
@@ -308,7 +314,7 @@
       if (!sectionKeys.length) { showEmpty("no dolls yet"); return; }
       activeSection = sectionKeys[0];
       els.controls.hidden = false;
-      buildTabs(); buildFamilies(); applyFilter();
+      buildTabs(); buildCollections(); buildFamilies(); applyFilter();
     })
     .catch(function (err) {
       showEmpty("manifest.json not found", "Serve this folder over HTTP (for example <code>python -m http.server</code>); file:// cannot load it. (" + esc(err.message) + ")");
@@ -335,6 +341,18 @@
     fams.sort().forEach(function (f) { var o = document.createElement("option"); o.value = f; o.textContent = f.toLowerCase(); els.familyFilter.appendChild(o); });
     els.familyFilter.hidden = false;
   }
+  function collectionName(key) { return (manifest.collections || {})[key] || key || ""; }
+  function buildCollections() {
+    var keys = Object.keys(manifest.collections || {});
+    if (keys.length < 2) return;
+    keys.forEach(function (k) { var o = document.createElement("option"); o.value = k; o.textContent = collectionName(k); els.collectionFilter.appendChild(o); });
+    els.collectionFilter.hidden = false;
+  }
+  els.collectionFilter.addEventListener("change", function () {
+    activeCollection = els.collectionFilter.value;
+    els.collectionFilter.classList.toggle("filtering", !!activeCollection);
+    applyFilter();
+  });
   els.familyFilter.addEventListener("change", function () {
     activeFamily = els.familyFilter.value;
     els.familyFilter.classList.toggle("filtering", !!activeFamily);
@@ -347,10 +365,11 @@
     var all = poses(), q = query.trim().toLowerCase();
     filtered = all.filter(function (p) {
       if (activeFamily && p.family !== activeFamily) return false;
+      if (activeCollection && p.collection !== activeCollection) return false;
       return (p.name + " " + (p.family || "")).toLowerCase().indexOf(q) !== -1;
     });
     renderGrid();
-    els.resultCount.textContent = (q || activeFamily) ? filtered.length + " of " + all.length + " poses" : all.length + " poses";
+    els.resultCount.textContent = (q || activeFamily || activeCollection) ? filtered.length + " of " + all.length + " poses" : all.length + " poses";
   }
 
   function aspectPad() {
@@ -360,7 +379,7 @@
 
   function renderGrid() {
     els.main.innerHTML = "";
-    if (!filtered.length) { showEmpty("no pose matches “" + esc(query) + "”", "Try a shorter word, or clear the family filter."); return; }
+    if (!filtered.length) { showEmpty("no pose matches “" + esc(query) + "”", "Try a shorter word, or clear the filters."); return; }
     var grid = document.createElement("div"); grid.className = "grid";
     var pad = aspectPad();
     filtered.forEach(function (p, idx) {
@@ -397,7 +416,7 @@
     els.splitStage.style.width = "min(100%, " + (78 * ratio).toFixed(2) + "vh, " + Math.round(860 * ratio) + "px)";
     els.imgDoll.src = uri(p.doll); els.imgDoll.alt = p.name + " doll";
     els.lbName.textContent = p.name;
-    els.lbSub.textContent = [p.family, sec.title, sec.size, (lbIndex + 1) + " / " + filtered.length].filter(Boolean).join("  ·  ");
+    els.lbSub.textContent = [p.family, collectionName(p.collection).replace(/ \(.*\)$/, ""), sec.title, sec.size, (lbIndex + 1) + " / " + filtered.length].filter(Boolean).join("  ·  ");
     els.lbDownload.href = uri(p.doll); els.lbDownload.setAttribute("download", p.download_name || "");
     els.lbExamples.innerHTML = "";
     (p.examples || []).forEach(function (ex, i) {
